@@ -17,16 +17,19 @@ public class RoadController {
     public RoadController(RoadService roadService) {
         this.roadService = roadService;
     }
+
     @GetMapping("/allRoad")
-    public ResponseEntity<List<Road>> findAllRoads(){
+    public ResponseEntity<List<Road>> findAllRoads() {
         return ResponseEntity.status(HttpStatus.OK).body(roadService.findAll());
     }
-    @GetMapping("/id")
-    public ResponseEntity<Road> findByRoudId(@PathVariable Long id){
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Road> findByRoadId(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(roadService.findByRoadId(id));
     }
-    @PostMapping({"/id"})
-    public ResponseEntity<Road> addNewRoad(@RequestBody Road road){
+
+    @PostMapping({"/{id}"})
+    public ResponseEntity<Road> addNewRoad(@RequestBody Road road) {
         return ResponseEntity.status(HttpStatus.OK).body(roadService.addNewRoad(road));
     }
 
