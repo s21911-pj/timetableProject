@@ -15,11 +15,16 @@ public class RoadService {
     public RoadService(RoadRepository roadRepository) {
         this.roadRepository = roadRepository;
     }
-    public List<Road> findAll() {return roadRepository.findAll();}
-    public Road findByRoadId(Long id){
-        return roadRepository.findById(id).orElseThrow(()-> new EntityExistsException("Road with id" + id + "doesn't exist"));
+
+    public List<Road> findAll() {
+        return roadRepository.findAll();
     }
-    public Road addNewRoad(Road addNewRoad){
+
+    public Road findByRoadId(Long id) {
+        return roadRepository.findById(id).orElseThrow(() -> new EntityExistsException("Road with id" + id + "doesn't exist"));
+    }
+
+    public Road addNewRoad(Road addNewRoad) {
         Road road = new Road();
         road.setName(addNewRoad.getName());
         road.setDestination(addNewRoad.getDestination());

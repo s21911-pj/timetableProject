@@ -21,7 +21,7 @@ public class BusService {
     }
 
     public Bus findById(Long id) {
-        return busRepository.findById(id).orElseThrow(() -> new EntityExistsException("Bus with id " + id + "doesn't eksist"));
+        return exception(id, "Bus with id ", "doesn't eksist");
     }
 
     public Bus addNewBus(Bus addBus) {
@@ -30,10 +30,14 @@ public class BusService {
     }
 
     public Bus changeBusName(Long id, Bus busToUpdate) {
-        Bus bus = busRepository.findById(id).orElseThrow(() -> new EntityExistsException("Bus with id " + id + "doesn't eksist"));
+        Bus bus = exception(id, "Bus with id ", "doesn't eksist");
         updateBus(busToUpdate, bus);
 
         return busRepository.save(bus);
+    }
+
+    private Bus exception(Long id, String s, String s2) {
+        return busRepository.findById(id).orElseThrow(() -> new EntityExistsException(s + id + s2));
     }
 
     private void updateBus(Bus busToUpdate, Bus bus) {
@@ -50,7 +54,7 @@ public class BusService {
     }
 
     public Bus changeRoad(Long id, Bus roadToChange) {
-        Bus bus = busRepository.findById(id).orElseThrow(() -> new EntityExistsException("Bus with id" + id + "doesn't exist"));
+        Bus bus = exception(id, "Bus with id", "doesn't exist");
         if (roadToChange.getName() != null) {
             bus.setRoad(bus.getRoad());
         }
@@ -62,10 +66,12 @@ public class BusService {
     }
 
     public Bus brokenBus(Long id, Bus bus) {
-        Bus brokenBus = busRepository.findById(id).orElseThrow(() -> new EntityExistsException("Bus with id" + id + "doesn't exist"));
+        Bus brokenBus = exception(id, "Bus with id", "doesn't exist");
         if (!brokenBus.isBusActive()) {
             bus.setRoad(brokenBus.getRoad());
         }
         return bus;
     }
+
+
 }

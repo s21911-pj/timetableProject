@@ -7,7 +7,7 @@ import pl.pjatk.timetable.model.Bus;
 import java.util.List;
 
 @Repository
-public interface BusRepository extends JpaRepository<Bus,Long> {
+public interface BusRepository extends JpaRepository<Bus, Long> {
 
     List<Bus> findBusByRoadName(String name);
 
