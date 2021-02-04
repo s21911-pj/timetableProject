@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.pjatk.timetable.model.BusDriver;
 import pl.pjatk.timetable.service.BusDriverService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/busDriver")
 public class BusDriverController {
@@ -15,6 +17,11 @@ public class BusDriverController {
 
     public BusDriverController(BusDriverService busDriverService) {
         this.busDriverService = busDriverService;
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<BusDriver>> findAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(busDriverService.findAll());
     }
 
     @GetMapping("/{id}")

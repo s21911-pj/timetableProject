@@ -23,7 +23,7 @@ public class BusDriverService {
         this.busDriverRepository = busDriverRepository;
     }
 
-    public List findAll(){return busDriverRepository.findAll();}
+    public List<BusDriver> findAll(){return busDriverRepository.findAll();}
 
     private BusDriver exception(Long id, String s, String s2) {
         return busDriverRepository.findById(id).orElseThrow(() -> new EntityExistsException(s + id + s2));
