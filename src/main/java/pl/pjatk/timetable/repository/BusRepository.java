@@ -11,7 +11,5 @@ import java.util.Optional;
 @Repository
 public interface BusRepository extends JpaRepository<Bus, Long> {
 
-//    @Query("select b from Bus b where b.road.name=:name")
-//    Optional<Bus> findBusByRoadName(String name);
 
 }
