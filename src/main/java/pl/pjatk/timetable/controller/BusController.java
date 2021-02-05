@@ -31,7 +31,7 @@ public class BusController {
 
     @PostMapping("/new")
     public ResponseEntity<Bus> addNewBus(@RequestBody Bus bus) {
-        return ResponseEntity.status(HttpStatus.OK).body(busService.addNewBus(bus));
+        return ResponseEntity.ok(busService.addNewBus(bus));
     }
 
     @PostMapping("/update/{id}")
@@ -39,15 +39,15 @@ public class BusController {
         return ResponseEntity.status(HttpStatus.OK).body(busService.updateBus(id, bus));
     }
 
-    @PutMapping("/changeRoad/{busId}/{roadId}")
-    public ResponseEntity<Bus> changeRoad(@PathVariable Long busId, @PathVariable Long roadId ) {
-        return ResponseEntity.status(HttpStatus.OK).body(busService.changeRoad(busId, roadId));
-    }
+//    @PutMapping("/changeRoad/{busId}/{roadId}")
+//    public ResponseEntity<Bus> changeRoad(@PathVariable Long busId, @PathVariable Long roadId ) {
+//        return ResponseEntity.status(HttpStatus.OK).body(busService.changeRoad(busId, roadId));
+//    }
 
 
     @PutMapping("/brokenBus/{id}")
-    public ResponseEntity<Bus> sendNewBus(@PathVariable Long id, @RequestBody Bus bus) {
-        return ResponseEntity.status(HttpStatus.OK).body(busService.brokenBus(id, bus));
+    public ResponseEntity<Bus> sendNewBus(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(busService.brokenBus(id));
     }
 
 }

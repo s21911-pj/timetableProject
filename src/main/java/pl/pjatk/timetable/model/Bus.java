@@ -47,13 +47,7 @@ public class Bus {
         return isBusActive;
     }
 
-//    public Bus(Long id, String name, Integer number, boolean isBusActive, Road road) {
-//        this.id = id;
-//        this.name = name;
-//        this.number = number;
-//        this.isBusActive = isBusActive;
-//        this.road = road;
-//    }
+
 
     public void setBusActive(boolean busActive) {
         isBusActive = busActive;
@@ -77,6 +71,12 @@ public class Bus {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public boolean getIsActive() {return  isBusActive;}
+
+
+    public void setIsActive(boolean isBusActive) {this.isBusActive=isBusActive;
     }
 
 }

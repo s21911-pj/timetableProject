@@ -1,6 +1,7 @@
 package pl.pjatk.timetable.service;
 
 import org.springframework.stereotype.Service;
+import pl.pjatk.timetable.exception.TimetableExceptions;
 import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.Road;
 import pl.pjatk.timetable.repository.BusRepository;
@@ -27,7 +28,7 @@ public class BusService {
     }
 
     public Bus findById(Long id) {
-        return busRepository.findById(id).orElseThrow(exception("bus", id));
+        return busRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
     }
 
     public Bus addNewBus(Bus addBus) {
@@ -44,12 +45,12 @@ public class BusService {
 
 
     public Bus updateBus(Long id, Bus busToUpdate) {
-        Bus bus = busRepository.findById(id).orElseThrow(exception("koopa", id));
+        Bus bus = busRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
         if (busToUpdate.getName() != null) {
-            bus.setName(bus.getName());
+            bus.setName(busToUpdate.getName());
         }
         if (busToUpdate.getNumber() != null) {
-            bus.setNumber(bus.getNumber());
+            bus.setNumber(busToUpdate.getNumber());
 
         }
 //        if (busToUpdate.getRoad() != null) {
@@ -68,21 +69,16 @@ public class BusService {
 //    }
 
 
-    public Bus brokenBus(Long id, Bus bus) {
-        Bus brokenBus = busRepository.findById(id).orElseThrow(exception("bus", id));
+    public Bus brokenBus(Long id) {
+        Bus brokenBus = busRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
         if (!brokenBus.isBusActive()) {
-            bus.
+            busRepository.findById(id);
+            brokenBus.setIsActive(true);
         }
-        return bus;
+        return busRepository.save(brokenBus);
     }
 
-    private Supplier<EntityExistsException> exception(String message, Long id) {
-        return () -> new EntityExistsException(message + id + " not exist");
-    }
 
-    private Supplier<EntityExistsException> exception(String message) {
-        return () -> new EntityExistsException(message + " not exist");
-    }
 
 
 }
