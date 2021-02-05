@@ -1,6 +1,8 @@
 package pl.pjatk.timetable.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,16 +15,19 @@ public class Road {
     private String name;
     private String destination;
     private Integer numberOfBusStop;
-
-    @OneToMany(mappedBy = "road")
-    private List<Bus> busList;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "road")
+//    private List<Bus> busList;
+    @ManyToOne
+    @JoinColumn(name = "bus_id")
+    private Bus bus;
 
     public Road(Long id, String name, String destination, Integer numberOfBusStop, List<Bus> busList) {
         this.id = id;
         this.name = name;
         this.destination = destination;
         this.numberOfBusStop = numberOfBusStop;
-        this.busList = busList;
+        this.bus=bus;
     }
 
     public Road() {
@@ -60,11 +65,11 @@ public class Road {
         this.numberOfBusStop = numberOfBusStop;
     }
 
-    public List<Bus> getBusList() {
-        return busList;
+    public Bus getBus() {
+        return bus;
     }
 
-    public void setBusList(List<Bus> busList) {
-        this.busList = busList;
+    public void setBus(Bus bus) {
+        this.bus = bus;
     }
 }

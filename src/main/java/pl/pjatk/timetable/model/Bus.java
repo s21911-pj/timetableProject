@@ -4,6 +4,7 @@ package pl.pjatk.timetable.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Bus {
@@ -13,10 +14,14 @@ public class Bus {
     private String name;
     private Integer number;
     private boolean isBusActive;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "road_id")
+//    private Road road;
+
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "road")
-    private Road road;
+    @OneToMany(mappedBy = "bus")
+    private List<Road> roads;
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
@@ -26,21 +31,13 @@ public class Bus {
     public Bus() {
     }
 
-    public Bus(Long id, String name, Integer number, Road road) {
+    public Bus(Long id, String name, Integer number, List<Road> roads) {
         this.id = id;
         this.name = name;
         this.number = number;
-        this.road = road;
+        this.roads = roads;
     }
 
-    public Bus(Long id, String name, Integer number, boolean isBusActive, Road road, BusDriver busDriver) {
-        this.id = id;
-        this.name = name;
-        this.number = number;
-        this.isBusActive = isBusActive;
-        this.road = road;
-        this.busDriver = busDriver;
-    }
 
     public Long getId() {
         return id;
@@ -50,13 +47,13 @@ public class Bus {
         return isBusActive;
     }
 
-    public Bus(Long id, String name, Integer number, boolean isBusActive, Road road) {
-        this.id = id;
-        this.name = name;
-        this.number = number;
-        this.isBusActive = isBusActive;
-        this.road = road;
-    }
+//    public Bus(Long id, String name, Integer number, boolean isBusActive, Road road) {
+//        this.id = id;
+//        this.name = name;
+//        this.number = number;
+//        this.isBusActive = isBusActive;
+//        this.road = road;
+//    }
 
     public void setBusActive(boolean busActive) {
         isBusActive = busActive;
@@ -82,11 +79,4 @@ public class Bus {
         this.number = number;
     }
 
-    public Road getRoad() {
-        return road;
-    }
-
-    public void setRoad(Road road) {
-        this.road = road;
-    }
 }

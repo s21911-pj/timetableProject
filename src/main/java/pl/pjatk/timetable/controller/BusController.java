@@ -34,23 +34,19 @@ public class BusController {
         return ResponseEntity.status(HttpStatus.OK).body(busService.addNewBus(bus));
     }
 
-    @PostMapping("/changeName/{id}")
+    @PostMapping("/update/{id}")
     public ResponseEntity<Bus> changeBusName(@PathVariable Long id, @RequestBody Bus bus) {
-        return ResponseEntity.status(HttpStatus.OK).body(busService.changeBusName(id, bus));
+        return ResponseEntity.status(HttpStatus.OK).body(busService.updateBus(id, bus));
     }
 
-    @PutMapping("/changeRoad/{id}")
-    public ResponseEntity<Bus> changeRoad(@PathVariable Long id, @RequestBody Bus bus) {
-        return ResponseEntity.status(HttpStatus.OK).body(busService.changeRoad(id, bus));
+    @PutMapping("/changeRoad/{busId}/{roadId}")
+    public ResponseEntity<Bus> changeRoad(@PathVariable Long busId, @PathVariable Long roadId ) {
+        return ResponseEntity.status(HttpStatus.OK).body(busService.changeRoad(busId, roadId));
     }
 
-    @GetMapping("/findByRoadName/{name}")
-    public ResponseEntity<List<Bus>> findBusByRoadName(@PathVariable String name) {
-        return ResponseEntity.status(HttpStatus.OK).body(busService.findBusByRoadName(name));
-    }
 
     @PutMapping("/brokenBus/{id}")
-    public ResponseEntity<Bus> sensNewBus(@PathVariable Long id, @RequestBody Bus bus) {
+    public ResponseEntity<Bus> sendNewBus(@PathVariable Long id, @RequestBody Bus bus) {
         return ResponseEntity.status(HttpStatus.OK).body(busService.brokenBus(id, bus));
     }
 
