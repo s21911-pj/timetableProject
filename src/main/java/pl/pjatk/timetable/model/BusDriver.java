@@ -20,6 +20,12 @@ public class BusDriver {
     public BusDriver() {
     }
 
+    public BusDriver(Long id, String name, String surname) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+    }
+
     public BusDriver(Long id, String name, String surname, Bus bus) {
         this.id = id;
         this.name = name;

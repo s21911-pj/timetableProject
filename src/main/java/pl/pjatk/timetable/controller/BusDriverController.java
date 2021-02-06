@@ -4,6 +4,7 @@ package pl.pjatk.timetable.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.BusDriver;
 import pl.pjatk.timetable.service.BusDriverService;
 
@@ -32,6 +33,10 @@ public class BusDriverController {
     @PostMapping("/new")
     public ResponseEntity<BusDriver> addNewDriver(@RequestBody BusDriver busDriver) {
         return ResponseEntity.status(HttpStatus.OK).body(busDriverService.addNewDriver(busDriver));
+    }
+    @PutMapping("/noDriver/{id}")
+    public ResponseEntity<Boolean> checkDriver(@RequestBody Bus bus, @RequestBody BusDriver busDriver) {
+        return ResponseEntity.status(HttpStatus.OK).body(busDriverService.checkDriver(bus,busDriver));
     }
 }
 

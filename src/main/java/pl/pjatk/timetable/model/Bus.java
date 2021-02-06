@@ -25,7 +25,7 @@ public class Bus {
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "busDriver_id",referencedColumnName = "id")
+    @JoinColumn(name = "busDriver_id", referencedColumnName = "id")
     private BusDriver busDriver;
 
     public Bus() {
@@ -38,6 +38,12 @@ public class Bus {
         this.roads = roads;
     }
 
+    public Bus(Long id, String name, Integer number, boolean isBusActive) {
+        this.id = id;
+        this.name = name;
+        this.number = number;
+        this.isBusActive = isBusActive;
+    }
 
     public Long getId() {
         return id;
@@ -46,7 +52,6 @@ public class Bus {
     public boolean isBusActive() {
         return isBusActive;
     }
-
 
 
     public void setBusActive(boolean busActive) {
@@ -73,10 +78,13 @@ public class Bus {
         this.number = number;
     }
 
-    public boolean getIsActive() {return  isBusActive;}
+    public boolean getIsActive() {
+        return isBusActive;
+    }
 
 
-    public void setIsActive(boolean isBusActive) {this.isBusActive=isBusActive;
+    public void setIsActive(boolean isBusActive) {
+        this.isBusActive = isBusActive;
     }
 
 }

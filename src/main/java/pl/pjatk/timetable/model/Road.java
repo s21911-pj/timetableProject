@@ -15,7 +15,7 @@ public class Road {
     private String name;
     private String destination;
     private Integer numberOfBusStop;
-//    @JsonIgnore
+    //    @JsonIgnore
 //    @OneToMany(mappedBy = "road")
 //    private List<Bus> busList;
     @ManyToOne
@@ -27,7 +27,7 @@ public class Road {
         this.name = name;
         this.destination = destination;
         this.numberOfBusStop = numberOfBusStop;
-        this.bus=bus;
+        this.bus = bus;
     }
 
     public Road() {

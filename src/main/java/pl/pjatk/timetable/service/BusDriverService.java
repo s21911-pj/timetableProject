@@ -21,27 +21,34 @@ public class BusDriverService {
         this.busDriverRepository = busDriverRepository;
     }
 
-    public List<BusDriver> findAll(){return busDriverRepository.findAll();}
+    public List<BusDriver> findAll() {
+        return busDriverRepository.findAll();
+    }
 
 
-    public BusDriver findById(Long id){
-        return busDriverRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
+    public BusDriver findById(Long id) {
+        return busDriverRepository.findById(id).orElseThrow(() -> new TimetableExceptions(id));
 
     }
-    public BusDriver addNewDriver(BusDriver busDriver ) {
+
+    public BusDriver addNewDriver(BusDriver busDriver) {
 
         return busDriverRepository.save(busDriver);
     }
 
-    public boolean checkDriver(Bus bus, BusDriver busDriver){
-        if (busDriver == null){
+    public boolean checkDriver(Bus bus, BusDriver busDriver) {
+        if (busDriver == null) {
             return bus.isBusActive();
         }
         return false;
     }
 
-//    public Bus getDriver(Bus bus, BusDriver busDriver){
-//        if (busDriver == null){
+    public void deleteByID(Long id) {
+        busDriverRepository.deleteById(id);
+    }
+
+//    public Bus isThereDriver(Bus bus, BusDriver busDriver){
+//        if (busDriver.getId() == null){
 //
 //        }
 //        return ;
