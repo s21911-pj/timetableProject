@@ -3,6 +3,7 @@ package pl.pjatk.timetable.service;
 
 import org.springframework.stereotype.Service;
 import pl.pjatk.timetable.model.Road;
+import pl.pjatk.timetable.repository.BusRepository;
 import pl.pjatk.timetable.repository.RoadRepository;
 
 import javax.persistence.EntityExistsException;
@@ -11,9 +12,11 @@ import java.util.List;
 @Service
 public class RoadService {
     private final RoadRepository roadRepository;
+    private final BusRepository busRepository;
 
-    public RoadService(RoadRepository roadRepository) {
+    public RoadService(RoadRepository roadRepository, BusRepository busRepository) {
         this.roadRepository = roadRepository;
+        this.busRepository = busRepository;
     }
 
     public List<Road> findAll() {
@@ -35,4 +38,18 @@ public class RoadService {
     public void deleteRoadByID(Long id) {
         roadRepository.deleteById(id);
     }
+
+    public Road mustBeTheBus(Long idRoad,Long IdBus){
+        Road road = findByRoadId(idRoad);
+
+    }
 }
+//    public Bus addNewDriver(Long idBus, Long idDriver){
+//        Bus bus = findById(idBus);
+//        BusDriver busDriver = busDriverRepository.findById(idDriver).orElseThrow(()-> new TimetableExceptions(idDriver));
+//        if (busDriver != null){
+//            bus.setBusDriver(busDriver);
+//            bus.setIsActive(true);
+//        }
+//        return busRepository.save(bus);
+//    }
