@@ -2,6 +2,8 @@ package pl.pjatk.timetable.service;
 
 
 import org.springframework.stereotype.Service;
+import pl.pjatk.timetable.exception.TimetableExceptions;
+import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.Road;
 import pl.pjatk.timetable.repository.BusRepository;
 import pl.pjatk.timetable.repository.RoadRepository;
@@ -39,17 +41,5 @@ public class RoadService {
         roadRepository.deleteById(id);
     }
 
-    public Road mustBeTheBus(Long idRoad,Long IdBus){
-        Road road = findByRoadId(idRoad);
 
-    }
 }
-//    public Bus addNewDriver(Long idBus, Long idDriver){
-//        Bus bus = findById(idBus);
-//        BusDriver busDriver = busDriverRepository.findById(idDriver).orElseThrow(()-> new TimetableExceptions(idDriver));
-//        if (busDriver != null){
-//            bus.setBusDriver(busDriver);
-//            bus.setIsActive(true);
-//        }
-//        return busRepository.save(bus);
-//    }

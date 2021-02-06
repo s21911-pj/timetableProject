@@ -1,11 +1,14 @@
 package pl.pjatk.timetable.service;
 
 import org.springframework.stereotype.Service;
+import pl.pjatk.timetable.exception.BadException;
 import pl.pjatk.timetable.exception.TimetableExceptions;
 import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.BusDriver;
+import pl.pjatk.timetable.model.Road;
 import pl.pjatk.timetable.repository.BusDriverRepository;
 import pl.pjatk.timetable.repository.BusRepository;
+import pl.pjatk.timetable.repository.RoadRepository;
 
 import java.util.List;
 
@@ -13,13 +16,13 @@ import java.util.List;
 @Service
 public class BusService {
     private final BusRepository busRepository;
-    private final RoadService roadService;
+    private final RoadRepository roadRepository;
     private final BusDriverRepository busDriverRepository;
 
-    public BusService(BusRepository busRepository, RoadService roadService, BusDriverService busDriverService, BusDriverRepository busDriverRepository) {
+    public BusService(BusRepository busRepository, RoadService roadService, BusDriverService busDriverService, RoadRepository roadRepository, BusDriverRepository busDriverRepository) {
         this.busRepository = busRepository;
+        this.roadRepository = roadRepository;
 
-        this.roadService = roadService;
 
         this.busDriverRepository = busDriverRepository;
     }
@@ -32,7 +35,16 @@ public class BusService {
         return busRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
     }
 
+//    public Bus addNewBus(Bus addBus) {
+//
+//
+//        return busRepository.save(addBus);
+//    }
+
     public Bus addNewBus(Bus addBus) {
+        if(addBus.getIsActive()== false){
+            throw new BadException("No way u can't give me broken bus");
+        }
 
         return busRepository.save(addBus);
     }
@@ -91,6 +103,12 @@ public class BusService {
             bus.setIsActive(true);
         }
         return busRepository.save(bus);
+    }
+    public Bus mustBeTheRoad(Long idBus, Long idRoad){
+        Bus bus = findById(idBus);
+        Road road = roadService.findByRoadId(idRoad)
+
+        if (bus)
     }
 
 

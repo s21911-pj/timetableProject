@@ -1,5 +1,6 @@
 package pl.pjatk.timetable.exception;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -9,4 +10,6 @@ public class TimetableExceptions extends RuntimeException {
     public TimetableExceptions(Long message) {
         super(message + " not found");
     }
+
+
 }
