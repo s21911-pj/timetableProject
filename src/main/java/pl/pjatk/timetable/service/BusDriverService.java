@@ -2,6 +2,7 @@ package pl.pjatk.timetable.service;
 
 
 import org.springframework.stereotype.Service;
+import pl.pjatk.timetable.exception.BadException;
 import pl.pjatk.timetable.exception.TimetableExceptions;
 import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.BusDriver;
@@ -35,6 +36,12 @@ public class BusDriverService {
     }
 
     public BusDriver addNewDriver(BusDriver busDriver) {
+        if (busDriver.getName()==null){
+            throw new BadException(" Man with no name? are u serious?");
+        }
+        if(busDriver.getSurname()==null){
+            throw new BadException("yea sure hiding ninja ...");
+        }
 
         return busDriverRepository.save(busDriver);
     }

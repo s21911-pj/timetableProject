@@ -104,12 +104,12 @@ public class BusService {
         }
         return busRepository.save(bus);
     }
-    public Bus mustBeTheRoad(Long idBus, Long idRoad){
-        Bus bus = findById(idBus);
-        Road road = roadService.findByRoadId(idRoad)
-
-        if (bus)
-    }
+//    public Bus mustBeTheRoad(Long idBus, Long idRoad){
+//        Bus bus = findById(idBus);
+//        Road road = roadService.findByRoadId(idRoad)
+//
+//        if (bus)
+//    }
 
 
 
