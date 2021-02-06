@@ -32,4 +32,7 @@ public class RoadService {
         return roadRepository.save(road);
 
     }
+    public void deleteRoadByID(Long id) {
+        roadRepository.deleteById(id);
+    }
 }

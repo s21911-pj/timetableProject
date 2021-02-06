@@ -32,27 +32,14 @@ public class RoadController {
     public ResponseEntity<Road> addNewRoad(@RequestBody Road road) {
         return ResponseEntity.status(HttpStatus.OK).body(roadService.addNewRoad(road));
     }
+    @DeleteMapping("/deleteRoadById/{id}")
+    public ResponseEntity<?> deleteRoadById(@PathVariable Long id){
+        roadService.deleteRoadByID(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }
 
-//    public BusController(BusService busService) {
-//        this.busService = busService;
-//    }
-//    @GetMapping("/getAll")
-//    public ResponseEntity<List<Bus>> findAllBuses(){
-//        return ResponseEntity.status(HttpStatus.OK).body(busService.findAll());
-//    }
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Bus> findById(@PathVariable Long id){
-//        return ResponseEntity.status(HttpStatus.OK).body(busService.findById(id));
-//    }
-//    @PostMapping("/{id}")
-//    public ResponseEntity<Bus> addNewBus(@RequestBody Bus bus){
-//        return ResponseEntity.status(HttpStatus.OK).body(busService.addNewBus(bus));
-//    }
-//    @PostMapping("/{name}")
-//    public ResponseEntity<Bus> changeBusName(@RequestBody Bus bus){
-//        return ResponseEntity.status(HttpStatus.OK).body(busService.changeBusName(findById(Bus)));
-//    }
-//}
+
 
