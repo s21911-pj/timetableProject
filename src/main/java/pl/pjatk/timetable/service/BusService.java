@@ -3,24 +3,25 @@ package pl.pjatk.timetable.service;
 import org.springframework.stereotype.Service;
 import pl.pjatk.timetable.exception.TimetableExceptions;
 import pl.pjatk.timetable.model.Bus;
-import pl.pjatk.timetable.model.Road;
+import pl.pjatk.timetable.model.BusDriver;
+import pl.pjatk.timetable.repository.BusDriverRepository;
 import pl.pjatk.timetable.repository.BusRepository;
-import pl.pjatk.timetable.repository.RoadRepository;
 
-import javax.persistence.EntityExistsException;
 import java.util.List;
-import java.util.function.Supplier;
 
 
 @Service
 public class BusService {
     private final BusRepository busRepository;
     private final RoadService roadService;
+    private final BusDriverRepository busDriverRepository;
 
-    public BusService(BusRepository busRepository, RoadRepository roadRepository, RoadService roadService) {
+    public BusService(BusRepository busRepository, RoadService roadService, BusDriverService busDriverService, BusDriverRepository busDriverRepository) {
         this.busRepository = busRepository;
 
         this.roadService = roadService;
+
+        this.busDriverRepository = busDriverRepository;
     }
 
     public List<Bus> findAll() {
@@ -82,7 +83,15 @@ public class BusService {
         busRepository.deleteById(id);
     }
 
-
+    public Bus addNewDriver(Long idBus,Long idDriver){
+        Bus bus = findById(idBus);
+        BusDriver busDriver = busDriverRepository.findById(idDriver).orElseThrow(()-> new TimetableExceptions(idDriver));
+        if (busDriver != null){
+            bus.setBusDriver(busDriver);
+            bus.setIsActive(true);
+        }
+        return busRepository.save(bus);
+    }
 
 
 

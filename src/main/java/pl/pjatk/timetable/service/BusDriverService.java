@@ -6,6 +6,7 @@ import pl.pjatk.timetable.exception.TimetableExceptions;
 import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.BusDriver;
 import pl.pjatk.timetable.repository.BusDriverRepository;
+import pl.pjatk.timetable.repository.BusRepository;
 
 
 import java.util.List;
@@ -16,9 +17,11 @@ public class BusDriverService {
 
 
     private final BusDriverRepository busDriverRepository;
+    private final BusRepository busRepository;
 
-    public BusDriverService(BusDriverRepository busDriverRepository) {
+    public BusDriverService(BusDriverRepository busDriverRepository, BusRepository busRepository) {
         this.busDriverRepository = busDriverRepository;
+        this.busRepository = busRepository;
     }
 
     public List<BusDriver> findAll() {
@@ -36,11 +39,13 @@ public class BusDriverService {
         return busDriverRepository.save(busDriver);
     }
 
-    public boolean checkDriver(Bus bus, BusDriver busDriver) {
-        if (busDriver == null) {
-            return bus.isBusActive();
+    public Bus checkDriver(Long id) {
+
+        Bus bus = busRepository.findById(id).orElseThrow(()-> new TimetableExceptions( id));
+        if (bus.getBusDriver() == null) {
+            bus.setBusActive(false);
         }
-        return false;
+        return busRepository.save(bus) ;
     }
 
 

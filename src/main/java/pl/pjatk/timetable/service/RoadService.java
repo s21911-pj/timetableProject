@@ -1,6 +1,6 @@
 package pl.pjatk.timetable.service;
 
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 import pl.pjatk.timetable.model.Road;
 import pl.pjatk.timetable.repository.RoadRepository;

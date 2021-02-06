@@ -82,6 +82,21 @@ public class Bus {
         return isBusActive;
     }
 
+    public List<Road> getRoads() {
+        return roads;
+    }
+
+    public void setRoads(List<Road> roads) {
+        this.roads = roads;
+    }
+
+    public BusDriver getBusDriver() {
+        return busDriver;
+    }
+
+    public void setBusDriver(BusDriver busDriver) {
+        this.busDriver = busDriver;
+    }
 
     public void setIsActive(boolean isBusActive) {
         this.isBusActive = isBusActive;

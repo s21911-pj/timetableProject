@@ -35,8 +35,8 @@ public class BusDriverController {
         return ResponseEntity.status(HttpStatus.OK).body(busDriverService.addNewDriver(busDriver));
     }
     @PutMapping("/noDriver/{id}")
-    public ResponseEntity<Boolean> checkDriver(@RequestBody Bus bus, @RequestBody BusDriver busDriver) {
-        return ResponseEntity.status(HttpStatus.OK).body(busDriverService.checkDriver(bus,busDriver));
+    public ResponseEntity<Bus> checkDriver(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(busDriverService.checkDriver(id));
     }
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){

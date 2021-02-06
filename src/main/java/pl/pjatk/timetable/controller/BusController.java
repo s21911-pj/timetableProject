@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.pjatk.timetable.model.Bus;
+import pl.pjatk.timetable.model.BusDriver;
 import pl.pjatk.timetable.service.BusService;
 
 import java.util.List;
@@ -56,7 +57,10 @@ public class BusController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
+    @PutMapping("/addNewDriver/{idBus}/{idDriver}")
+    public ResponseEntity<Bus> addNewDriver(@PathVariable Long idBus, @PathVariable Long idDriver){
+        return ResponseEntity.status(HttpStatus.OK).body(busService.addNewDriver(idBus,idDriver));
+    }
 
 }
 
