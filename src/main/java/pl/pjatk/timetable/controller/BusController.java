@@ -50,6 +50,12 @@ public class BusController {
         return ResponseEntity.status(HttpStatus.OK).body(busService.brokenBus(id));
     }
 
+    @DeleteMapping("/deleteBusById/{id}")
+    public ResponseEntity<?> deleteBusById(@PathVariable Long id){
+        busService.deleteBusByID(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 }

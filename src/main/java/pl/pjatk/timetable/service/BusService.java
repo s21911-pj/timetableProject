@@ -78,6 +78,11 @@ public class BusService {
         return busRepository.save(brokenBus);
     }
 
+    public void deleteBusByID(Long id) {
+        busRepository.deleteById(id);
+    }
+
+
 
 
 

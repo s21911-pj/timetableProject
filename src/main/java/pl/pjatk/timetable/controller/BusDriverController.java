@@ -38,6 +38,11 @@ public class BusDriverController {
     public ResponseEntity<Boolean> checkDriver(@RequestBody Bus bus, @RequestBody BusDriver busDriver) {
         return ResponseEntity.status(HttpStatus.OK).body(busDriverService.checkDriver(bus,busDriver));
     }
+    @DeleteMapping("/deleteById/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        busDriverService.deleteByID(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
 
 
