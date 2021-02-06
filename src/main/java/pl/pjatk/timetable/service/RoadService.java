@@ -2,6 +2,7 @@ package pl.pjatk.timetable.service;
 
 
 import org.springframework.stereotype.Service;
+import pl.pjatk.timetable.exception.BadException;
 import pl.pjatk.timetable.exception.TimetableExceptions;
 import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.Road;
@@ -25,15 +26,16 @@ public class RoadService {
         return roadRepository.findAll();
     }
 
+
     public Road findByRoadId(Long id) {
         return roadRepository.findById(id).orElseThrow(() -> new EntityExistsException("Road with id" + id + "doesn't exist"));
     }
 
-    public Road addNewRoad(Road addNewRoad) {
+    public Road addNewRoad(Road addRoad) {
         Road road = new Road();
-        road.setName(addNewRoad.getName());
-        road.setDestination(addNewRoad.getDestination());
-        road.setNumberOfBusStop(addNewRoad.getNumberOfBusStop());
+        road.setName(addRoad.getName());
+        road.setDestination(addRoad.getDestination());
+        road.setNumberOfBusStop(addRoad.getNumberOfBusStop());
         return roadRepository.save(road);
 
     }
