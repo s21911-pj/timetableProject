@@ -40,11 +40,6 @@ public class BusController {
         return ResponseEntity.status(HttpStatus.OK).body(busService.updateBus(id, bus));
     }
 
-//    @PutMapping("/changeRoad/{busId}/{roadId}")
-//    public ResponseEntity<Bus> changeRoad(@PathVariable Long busId, @PathVariable Long roadId ) {
-//        return ResponseEntity.status(HttpStatus.OK).body(busService.changeRoad(busId, roadId));
-//    }
-
 
     @PutMapping("/brokenBus/{id}")
     public ResponseEntity<Bus> sendNewBus(@PathVariable Long id) {
@@ -52,14 +47,14 @@ public class BusController {
     }
 
     @DeleteMapping("/deleteBusById/{id}")
-    public ResponseEntity<?> deleteBusById(@PathVariable Long id){
+    public ResponseEntity<?> deleteBusById(@PathVariable Long id) {
         busService.deleteBusByID(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/addNewDriver/{idBus}/{idDriver}")
-    public ResponseEntity<Bus> addNewDriver(@PathVariable Long idBus, @PathVariable Long idDriver){
-        return ResponseEntity.status(HttpStatus.OK).body(busService.addNewDriver(idBus,idDriver));
+    public ResponseEntity<Bus> addNewDriver(@PathVariable Long idBus, @PathVariable Long idDriver) {
+        return ResponseEntity.status(HttpStatus.OK).body(busService.addNewDriver(idBus, idDriver));
     }
 
 }

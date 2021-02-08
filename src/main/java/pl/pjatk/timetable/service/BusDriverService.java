@@ -36,10 +36,10 @@ public class BusDriverService {
     }
 
     public BusDriver addNewDriver(BusDriver busDriver) {
-        if (busDriver.getName()==null){
+        if (busDriver.getName() == null) {
             throw new BadException(" Man with no name? are u serious?");
         }
-        if(busDriver.getSurname()==null){
+        if (busDriver.getSurname() == null) {
             throw new BadException("yea sure hiding ninja ...");
         }
 
@@ -48,25 +48,18 @@ public class BusDriverService {
 
     public Bus checkDriver(Long id) {
 
-        Bus bus = busRepository.findById(id).orElseThrow(()-> new TimetableExceptions( id));
+        Bus bus = busRepository.findById(id).orElseThrow(() -> new TimetableExceptions(id));
         if (bus.getBusDriver() == null) {
             bus.setBusActive(false);
         }
-        return busRepository.save(bus) ;
+        return busRepository.save(bus);
     }
-
 
 
     public void deleteByID(Long id) {
         busDriverRepository.deleteById(id);
     }
 
-//    public Bus isThereDriver(Bus bus, BusDriver busDriver){
-//        if (busDriver.getId() == null){
-//
-//        }
-//        return ;
-//    }
 
 }
 

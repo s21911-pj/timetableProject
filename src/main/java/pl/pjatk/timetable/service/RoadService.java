@@ -2,9 +2,6 @@ package pl.pjatk.timetable.service;
 
 
 import org.springframework.stereotype.Service;
-import pl.pjatk.timetable.exception.BadException;
-import pl.pjatk.timetable.exception.TimetableExceptions;
-import pl.pjatk.timetable.model.Bus;
 import pl.pjatk.timetable.model.Road;
 import pl.pjatk.timetable.repository.BusRepository;
 import pl.pjatk.timetable.repository.RoadRepository;
@@ -43,5 +40,11 @@ public class RoadService {
         roadRepository.deleteById(id);
     }
 
+//    public Bus mustBeTheBus(Long idRoad, Long idBus){
+//        Road road = findByRoadId(idRoad);
+//        Bus bus = busRepository.findById(idBus).orElseThrow(()-> new TimetableExceptions(idBus));
+//
+//        if (road.getBus().getId())
+//    }
 
 }

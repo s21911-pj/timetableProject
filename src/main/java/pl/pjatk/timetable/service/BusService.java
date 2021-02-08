@@ -32,7 +32,7 @@ public class BusService {
     }
 
     public Bus findById(Long id) {
-        return busRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
+        return busRepository.findById(id).orElseThrow(() -> new TimetableExceptions(id));
     }
 
 //    public Bus addNewBus(Bus addBus) {
@@ -42,7 +42,7 @@ public class BusService {
 //    }
 
     public Bus addNewBus(Bus addBus) {
-        if(addBus.getIsActive()== false){
+        if (addBus.getIsActive() == false) {
             throw new BadException("No way u can't give me broken bus");
         }
 
@@ -58,7 +58,7 @@ public class BusService {
 
 
     public Bus updateBus(Long id, Bus busToUpdate) {
-        Bus bus = busRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
+        Bus bus = busRepository.findById(id).orElseThrow(() -> new TimetableExceptions(id));
         if (busToUpdate.getName() != null) {
             bus.setName(busToUpdate.getName());
         }
@@ -66,24 +66,13 @@ public class BusService {
             bus.setNumber(busToUpdate.getNumber());
 
         }
-//        if (busToUpdate.getRoad() != null) {
-//            bus.setRoad(bus.getRoad());
-//        }
+
         return busRepository.save(bus);
     }
 
-//    public Bus changeRoad(Long BusId, Long RoadId) {
-//        Bus bus = findById(BusId);
-//        Road road = roadService.findByRoadId(RoadId);
-//        if (road != null) {
-//            bus.setRoad(road);
-//        }
-//        return addNewBus(bus);
-//    }
-
 
     public Bus brokenBus(Long id) {
-        Bus brokenBus = busRepository.findById(id).orElseThrow(()->new TimetableExceptions(id));
+        Bus brokenBus = busRepository.findById(id).orElseThrow(() -> new TimetableExceptions(id));
         if (!brokenBus.isBusActive()) {
             busRepository.findById(id);
             brokenBus.setIsActive(true);
@@ -95,22 +84,15 @@ public class BusService {
         busRepository.deleteById(id);
     }
 
-    public Bus addNewDriver(Long idBus,Long idDriver){
+    public Bus addNewDriver(Long idBus, Long idDriver) {
         Bus bus = findById(idBus);
-        BusDriver busDriver = busDriverRepository.findById(idDriver).orElseThrow(()-> new TimetableExceptions(idDriver));
-        if (busDriver != null){
+        BusDriver busDriver = busDriverRepository.findById(idDriver).orElseThrow(() -> new TimetableExceptions(idDriver));
+        if (busDriver != null) {
             bus.setBusDriver(busDriver);
             bus.setIsActive(true);
         }
         return busRepository.save(bus);
     }
-    public Bus mustBeTheRoad(Long idBus, Long idRoad){
-        Bus bus = findById(idBus);
-        Road road = roadService.findByRoadId(idRoad)
-
-        if (bus)
-    }
-
 
 
 }
